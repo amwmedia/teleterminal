@@ -5,10 +5,12 @@ const status = {sessions: [], clients: []};
 const {port, cmd, multi, interactive} = args;
 const progress = require('ora')({hideCursor: false});
 
+progress.text = getStatusDisplay();
+progress.start();
+
 module.exports = {
 	addSession: (session) => {
 		add('sessions', session, `${cmd} ${chalk.dim(`(PID:${session._pid})`)}`);
-		progress.start();
 	},
 	removeSession: (session, result = 'info') => {
 		const entry = remove('sessions', session);
