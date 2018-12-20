@@ -1,0 +1,25 @@
+body {
+	background-color: #000;
+	margin: 0;
+	padding: 0;
+}
+#terminal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	box-sizing: border-box;
+	opacity: 1;
+	transition: opacity 1s;
+}
+#terminal.disconnected {opacity: 0.6;}
+#terminal .xterm-cursor-layer {display: none;}
+#terminal.interactive .xterm-cursor-layer {display: block;}
+#terminal.strict-size {
+	border: 0 solid #333;
+	border-width: 0 1px 1px 0;
+	box-shadow: 0 0 50px 0 #555;
+}
+#terminal:not(.strict-size) {
+	right: 0;
+	bottom: 0;
+}
