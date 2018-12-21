@@ -4,9 +4,10 @@
   "description": "Host a terminal command using a web server",
   "main": "server.js",
   "scripts": {
-    "clean": "del-cli ./dist ./.cache",
-    "build": "yarn clean && parcel build ./static/index.html",
-    "develop": "yarn clean && parcel ./static/index.html",
+    "bld:clean": "del-cli ./dist ./.cache",
+    "bld:static": "cpy \"./static/*.ico\" \"./dist\"",
+    "build": "yarn bld:clean && yarn bld:static && parcel build ./static/index.html",
+    "develop": "yarn bld:clean && parcel ./static/index.html",
     "prepublish": "yarn build"
   },
   "repository": {
@@ -30,6 +31,7 @@
     "xterm": "^3.9.1"
   },
   "devDependencies": {
+    "cpy-cli": "^2.0.0",
     "del-cli": "^1.1.0",
     "parcel-bundler": "^1.10.3",
     "yarn": "^1.12.3"
