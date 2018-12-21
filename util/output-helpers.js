@@ -2,11 +2,17 @@ const chalk = require('chalk');
 const {definitions} = require('./arguments');
 const columnify = require('columnify');
 
-const helpData = definitions.map(d => ({
-	options: d.args.map(a => chalk.yellow(a)).join(', '),
-	default: (d.default == null ? chalk.red('REQUIRED') : chalk.dim(d.default)),
-	description: d.desc
-}))
+const helpData = [
+	{options: 'Options:', default: chalk.dim('Default'), description: chalk.dim('Description')},
+	...definitions.map(d => {
+		const allowedValues = (d.allowed ? chalk.yellow(`\n${d.allowed.join(' | ')}`) : '');
+		return {
+			options: d.args.join(', '),
+			default: (typeof d.default === 'string' ? chalk.dim(d.default) : ''),
+			description: `${chalk.dim(d.desc)}${allowedValues}`
+		}
+	})
+];
 
 module.exports = {
 	line: (len, text = '', clr = v => v) => {
@@ -21,12 +27,15 @@ module.exports = {
 Usage: teleterminal command [options]
        tt command [options]
 
-Options:
-${columnify(helpData, {showHeaders: false, columnSplitter: chalk.dim(' | ')})}
+${columnify(helpData, {
+	showHeaders: false,
+	columnSplitter: '   ',
+	preserveNewLines: true
+})}
 
 Examples:
-tt 'ping something.com'
-tt 'ls -a' -i -m
+${chalk.dim('tt "ping something.com"')}
+${chalk.dim('tt "ls -a" -i -m')}
 
 `
 	)

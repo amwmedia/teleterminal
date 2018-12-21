@@ -17,16 +17,18 @@ $ tt --help
 Usage: teleterminal command [options]
        tt command [options]
 
-Options:
--i, --interactive   | false | Allow users to send keyboard input
--m, --multi-session | false | Start a new instance of the command for each connected user
--p, --port          | 3000  | TCP port for the server to listen on
--h, --help          | false | Show this help screen
---history           | 1000  | Lines of command history to serve (single session only)
---cols              | 80    | Number of terminal columns (single session only)
---rows              | 43    | Number of terminal rows (single session only)
+Options:                  Default   Description
+-i, --interactive         none      Allow users to send keyboard input
+                                    none | all | local
+-m, --multi-session                 Start a new instance of the command for each connected user
+-a, --allow-client-args             Allow the path and query dictate the command args (multi-session only)
+-p, --port                3000      TCP port for the server to listen on
+-h, --help                          Show this help screen
+--history                 1000      Lines of command history to serve (single-session only)
+--cols                    80        Number of terminal columns (single-session only)
+--rows                    43        Number of terminal rows (single-session only)
 
 Examples:
-tt 'ping something.com'
-tt 'ls -a' -i -m
+tt "ping something.com"
+tt "ls" -i local -ma
 ```
