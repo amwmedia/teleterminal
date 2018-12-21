@@ -7,7 +7,6 @@ const io = require('socket.io')(app, {serveClient: false});
 const chalk = require('chalk');
 const pty = require('node-pty');
 const {args, requiredArgErrors} = require('./util/arguments');
-const {interfaces} = require('./util/network');
 const stringArgv = require('string-argv');
 const {line, helpScreen} = require('./util/output-helpers');
 
@@ -69,7 +68,7 @@ io.on('connection', function (socket) {
 
 	let sessionInteractive = false;
 	const clientAddress = socket.conn.remoteAddress.replace(/^.*?([\d\.]+).*?$/, '$1');
-	const localAddrs = ['127.0.0.1', '1', ...interfaces];
+	const localAddrs = ['127.0.0.1', '1'];
 	const isLocal = localAddrs.includes(clientAddress);
 	if (interactive === 'local' && isLocal) { sessionInteractive = true; }
 	if (interactive === 'all') { sessionInteractive = true; }
