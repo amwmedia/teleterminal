@@ -2,6 +2,8 @@
 
 Host a terminal command using a web server
 
+[![Teleterminal Example Video](https://i.imgur.com/J7APEvS.png)](https://www.youtube.com/watch?v=cco1U_89R8M)
+
 # Installation
 
 ```
