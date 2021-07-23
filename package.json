@@ -6,9 +6,9 @@
   "scripts": {
     "bld:clean": "del-cli ./dist ./.cache",
     "bld:static": "cpy \"./static/*.ico\" \"./dist\"",
-    "build": "yarn bld:clean && yarn bld:static && parcel build ./static/index.html",
-    "develop": "yarn bld:clean && parcel ./static/index.html",
-    "prepublish": "yarn build"
+    "build": "npm run bld:clean && npm run bld:static && parcel build ./static/index.html",
+    "develop": "npm run bld:clean && parcel ./static/index.html",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,17 +24,16 @@
     "chalk": "^2.4.1",
     "columnify": "^1.5.4",
     "minimist": "^1.2.0",
-    "node-pty": "^0.7.8",
+    "node-pty": "^0.10.1",
     "ora": "^3.0.0",
     "socket.io": "^2.2.0",
     "string-argv": "^0.1.1",
     "xterm": "^3.9.1"
   },
   "devDependencies": {
-    "cpy-cli": "^2.0.0",
+    "cpy-cli": "^3.1.1",
     "del-cli": "^1.1.0",
-    "parcel-bundler": "^1.10.3",
-    "yarn": "^1.12.3"
+    "parcel-bundler": "^1.12.5"
   },
   "bin": {
     "teleterminal": "./server.js",
